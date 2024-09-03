@@ -1,6 +1,7 @@
 package cn.jiangyoushengcai.mybatis.binding;
 
 import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Map;
 
@@ -15,7 +16,10 @@ public class MapperProxy<T> implements InvocationHandler {
     }
 
     @Override
-    public Object invoke(Object proxy, Method method, Object[] args) {
+    public Object invoke(Object proxy, Method method, Object[] args) throws Exception {
+        if (Object.class == method.getDeclaringClass()) {
+            return method.invoke(this, args);
+        }
         return "你被代理了,"+sqlSession.get(mapperInterface.getName()+"#"+method.getName());
     }
 }
