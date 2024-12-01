@@ -11,6 +11,8 @@
     <modules>
         <module>mybatis-step-02</module>
         <module>mybatis-step-03</module>
+        <module>mybatis-step-04</module>
+        <module>mybatis-step-05</module>
     </modules>
 
     <properties>
@@ -29,6 +31,11 @@
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
             <version>5.5.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>1.2.9</version>
         </dependency>
     </dependencies>
 
