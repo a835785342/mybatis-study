@@ -41,4 +41,16 @@ public class Configuration {
     public MappedStatement getMappedStatement(String id) {
         return mappedStatements.get(id);
     }
+    
+    public TypeAliasRegistry getTypeAliasRegistry() {
+        return typeAliasRegistry;
+    }
+
+    public void setEnvironment(Environment environment) {
+        this.environment = environment;
+    }
+
+    public Environment getEnvironment() {
+        return environment;
+    }
 }

@@ -2,17 +2,12 @@ package cn.jiangyoushengcai.mybatis.mapping;
 
 import cn.jiangyoushengcai.mybatis.session.Configuration;
 
-import java.util.Map;
-
 public class MappedStatement {
     private Configuration configuration;
     private String id;
     private SqlCommandType sqlCommandType;
-
-    private String parameterType;
-    private String resultType;
-    private String sql;
-    private Map<Integer, String> paramater;
+    
+    private BoundSql boundSql;
 
     MappedStatement() {
 
@@ -21,14 +16,11 @@ public class MappedStatement {
     public static class Builder {
         private MappedStatement mappedStatement = new MappedStatement();
 
-        public Builder(Configuration configuration, String id, SqlCommandType sqlCommandType, String parameterType, String resultType, String sql, Map<Integer, String> paramater) {
+        public Builder(Configuration configuration, String id, SqlCommandType sqlCommandType, BoundSql boundSql) {
             mappedStatement.configuration = configuration;
             mappedStatement.id = id;
             mappedStatement.sqlCommandType = sqlCommandType;
-            mappedStatement.parameterType = parameterType;
-            mappedStatement.resultType = resultType;
-            mappedStatement.sql = sql;
-            mappedStatement.paramater = paramater;
+            mappedStatement.boundSql = boundSql;
         }
         
         public MappedStatement build() {
@@ -38,59 +30,19 @@ public class MappedStatement {
         }
     }
 
-    public Configuration getConfiguration() {
-        return configuration;
-    }
-
-    public void setConfiguration(Configuration configuration) {
-        this.configuration = configuration;
-    }
-
     public String getId() {
         return id;
     }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
+    
     public SqlCommandType getSqlCommandType() {
         return sqlCommandType;
     }
 
-    public void setSqlCommandType(SqlCommandType sqlCommandType) {
-        this.sqlCommandType = sqlCommandType;
+    public Configuration getConfiguration() {
+        return configuration;
     }
 
-    public String getParameterType() {
-        return parameterType;
-    }
-
-    public void setParameterType(String parameterType) {
-        this.parameterType = parameterType;
-    }
-
-    public String getResultType() {
-        return resultType;
-    }
-
-    public void setResultType(String resultType) {
-        this.resultType = resultType;
-    }
-
-    public String getSql() {
-        return sql;
-    }
-
-    public void setSql(String sql) {
-        this.sql = sql;
-    }
-
-    public Map<Integer, String> getParamater() {
-        return paramater;
-    }
-
-    public void setParamater(Map<Integer, String> paramater) {
-        this.paramater = paramater;
+    public BoundSql getBoundSql() {
+        return boundSql;
     }
 }

@@ -1,12 +1,12 @@
 package cn.jiangyoushengcai.mybatis;
 
-import cn.jiangyoushengcai.mybatis.binding.MapperRegistry;
+import cn.hutool.json.JSONUtil;
 import cn.jiangyoushengcai.mybatis.dao.IUserDao;
 import cn.jiangyoushengcai.mybatis.io.Resources;
+import cn.jiangyoushengcai.mybatis.po.User;
 import cn.jiangyoushengcai.mybatis.session.SqlSession;
 import cn.jiangyoushengcai.mybatis.session.SqlSessionFactory;
 import cn.jiangyoushengcai.mybatis.session.SqlSessionFactoryBuilder;
-import cn.jiangyoushengcai.mybatis.session.defaults.DefaultSqlSessionFactory;
 import org.junit.Test;
 
 import java.io.Reader;
@@ -19,9 +19,9 @@ public class ApiTest {
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
         SqlSession sqlSession = sqlSessionFactory.openSession();
         IUserDao userDao = sqlSession.getMapper(IUserDao.class);
-        Integer age = userDao.queryUserAge("28");
+        User user = userDao.queryUserAge("1");
 
-        System.out.println("测试结果:" + age);
+        System.out.println("测试结果:" + JSONUtil.toJsonPrettyStr(user));
 
     }
 }

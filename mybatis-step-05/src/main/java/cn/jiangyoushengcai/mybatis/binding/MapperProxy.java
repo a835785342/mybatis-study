@@ -24,8 +24,18 @@ public class MapperProxy<T> implements InvocationHandler {
         if (Object.class.equals(method.getDeclaringClass())) {
             return method.invoke(this, args);
         } else {
-
+            final MapperMethod mapperMethod = cacheMapperMethod(method);
+            return mapperMethod.execute(sqlSession, args);
         }
-        return sqlSession.selectOne(method.getName(), args);
+
+    }
+
+    private MapperMethod cacheMapperMethod(Method method) {
+        MapperMethod mapperMethod = methodCache.get(method);
+        if (mapperMethod == null) {
+            mapperMethod = new MapperMethod(mapperInterface, method, sqlSession.getConfiguration());
+            methodCache.put(method, mapperMethod);
+        }
+        return mapperMethod;
     }
 }
